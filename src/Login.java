@@ -4,11 +4,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
@@ -37,6 +40,10 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setUndecorated(true);
+		
+		setLocationRelativeTo(null); // Centraliza a tela
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1366, 768);
 		contentPane = new JPanel();
@@ -78,14 +85,25 @@ public class Login extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Close");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Janela de confirmação ao clicar em "close"
+				int a = JOptionPane.showConfirmDialog(null, "Do you want to close the application?", "Select", JOptionPane.YES_NO_OPTION);
+				
+				if (a == 0) { // Ao selecionar "YES""
+					System.exit(a); // A janela é encerrada
+				}
+			}
+		});
 		btnNewButton_1.setBounds(1002, 463, 320, 23);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_1.setIcon(new ImageIcon(Login.class.getResource("/images/close.png")));
 		contentPane.add(btnNewButton_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(0, 0, 1400, 883);
 		lblNewLabel_3.setIcon(new ImageIcon(Login.class.getResource("/images/login-background.PNG")));
+		lblNewLabel_3.setBounds(0, 0, 1366, 768);
 		contentPane.add(lblNewLabel_3);
 	}
 }
